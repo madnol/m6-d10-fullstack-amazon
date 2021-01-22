@@ -1,18 +1,30 @@
-const mongoose = require("mongoose");
+// const database = require("./database");
 
-const productSchema = new mongoose.Schema(
-  {
-    name: { type: String },
-    description: { type: String },
-    brand: { type: String },
-    price: { type: Number },
-    category: { type: String },
-    imageUrl: { type: String },
-    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
-  },
-  { timestamps: true }
-);
+// class Model {
+//   constructor(name) {
+//     this.name = name;
+//   }
 
-const Product = mongoose.model("Product", productSchema);
+//   async run(query) {
+//     //WE ARE GONNA USE THIS EVERYTIME WE SEND A QUERY TO THE DATABASE
+//     try {
+//       const response = await database.query(query);
+//       return response;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
 
-module.exports = Product;
+//   //POST METHOD
+//   async save(body) {
+//     if (!body || Object.values(body).length === 0) {
+//       throw new Error("give me a body!");
+//     }
+//     const entries = Object.entries(body);
+//     const query = `INSERT INTO ${this.name} (${entries.map(
+//       entry => entry[0]
+//     )}) VALUES(${entries.map(entry => `'${entry[1]}'`)})`;
+//     const response = await this.run(query);
+//     return response;
+//   }
+// }
