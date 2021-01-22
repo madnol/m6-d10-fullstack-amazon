@@ -34,7 +34,7 @@ IF NOT EXISTS
     );
 
 
---------------------- REVIES
+--------------------- REVIEWS
 
     CREATE TABLE IF NOT EXISTS reviews
 (

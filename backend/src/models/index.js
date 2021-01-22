@@ -21,14 +21,37 @@ class Model {
     }
   }
 
-  async findById(id) {
-    if (!id) {
-      throw new Error("Hey you did not provided id!");
-    }
-    const query = `SELECT * FROM ${this.name} WHERE id=${parseInt(id, 10)}`;
+  //GET
+  async find() {
+    const query = `SELECT * FROM ${this.name}`;
     const response = await this.run(query);
     return response;
   }
+
+  //GET BY ID METHOD
+  async findById(id) {
+    if (!id) {
+      throw new Error("You did not include an id, you nincompoop");
+    }
+    if (this.name === "products") {
+      const query = `SELECT 
+      products.id, 
+      products.name, 
+      products.description, 
+      products.brand
+      FROM products
+      INNER JOIN categories ON products.category_id=categories.id
+      WHERE categories.id=${parseInt(id)}`;
+      const response = await this.run(query);
+      return response;
+    } else {
+      const query = `SELECT * FROM ${this.name} WHERE id=${parseInt(id)}`;
+      const response = await this.run(query);
+      return response;
+    }
+  }
+  //categories.id AS category_id,
+  //categories.name AS category,
 
   async findByIdAndDelete(id) {
     if (!id) {

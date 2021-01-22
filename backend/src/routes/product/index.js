@@ -58,7 +58,7 @@ const Products = new Model("products");
 
 router.get("/", async (req, res, next) => {
   try {
-    const response = await Articles.findOne();
+    const response = await Products.find();
     res.json({ data: response });
   } catch (e) {
     console.log(e);
@@ -68,7 +68,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const { rows } = await Articles.findById(req.params.id);
+    const { rows } = await Products.findById(req.params.id);
     if (!rows[0]) throw new ApiError(404, "Author");
     res.json({ data: rows[0] });
   } catch (e) {
